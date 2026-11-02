@@ -23,7 +23,7 @@ The submitted commit must include selected source files, `submission.json`, your
 
 ## Learn and prepare
 
-Use the [bilingual lesson](https://rzhaniya.github.io/daa-assignment-4-archive/), eight small interactive models, [Week 8 lecture](https://rzhaniya.github.io/daa-assignment-4-archive/week8/), and the [ungraded 15-question / 25-minute practice](https://rzhaniya.github.io/daa-assignment-4-archive/practice.html). The public learning questions are separate from the assessed Moodle questions.
+Use the [bilingual lesson](https://rzhaniya.github.io/daa-assignment-4-archive/), eight small interactive models, [Week 8 lecture](https://rzhaniya.github.io/daa-assignment-4-archive/week8/), and the [ungraded 15-question / 25-minute practice](https://rzhaniya.github.io/daa-assignment-4-archive/practice.html). A second [15-question practice with explanations](https://rzhaniya.github.io/daa-assignment-4-archive/practice-b.html) is also available. The public learning questions are separate from the assessed Moodle questions.
 
 The [individual English defence](https://lms.astanait.edu.kz/mod/quiz/view.php?id=95271) has **15 questions in 25 minutes**, one attempt: 10 single-answer and 5 multiple-response, three pages of five, free navigation. All six assignment parts are covered. Work independently without AI or external assistance during the defence.
 
