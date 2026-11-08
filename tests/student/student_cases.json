@@ -1,0 +1,685 @@
+[
+  {
+    "name": "student-lcs-both-empty",
+    "input": {
+      "task": "lcs",
+      "a": "",
+      "b": ""
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "defect": "Handles completely empty input strings without indexing errors or out-of-bounds exceptions."
+  },
+  {
+    "name": "student-lcs-one-empty",
+    "input": {
+      "task": "lcs",
+      "a": "HELLO",
+      "b": ""
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "defect": "Ensures empty string paired with non-empty string results in length 0 and empty sequence."
+  },
+  {
+    "name": "student-lcs-subsequence-skip",
+    "input": {
+      "task": "lcs",
+      "a": "XAYBZC",
+      "b": "ABC"
+    },
+    "output": {
+      "length": 3,
+      "sequence": "ABC"
+    },
+    "defect": "Verifies that LCS correctly skips non-matching intercalated characters preserving relative order."
+  },
+  {
+    "name": "student-lcs-repeated-chars",
+    "input": {
+      "task": "lcs",
+      "a": "AAAA",
+      "b": "AA"
+    },
+    "output": {
+      "length": 2,
+      "sequence": "AA"
+    },
+    "defect": "Checks that repeated characters are not greedily overcounted beyond the shorter sequence."
+  },
+  {
+    "name": "student-lcs-alternative-optimal",
+    "input": {
+      "task": "lcs",
+      "a": "AB",
+      "b": "BA"
+    },
+    "output": {
+      "length": 1,
+      "sequence": "A"
+    },
+    "defect": "Tests tied optimal subsequences (either A or B) and ensures correct length 1 is returned."
+  },
+  {
+    "name": "student-merge-zero-blocks",
+    "input": {
+      "task": "merge",
+      "sizes": []
+    },
+    "output": {
+      "cost": 0,
+      "plan": []
+    },
+    "defect": "Validates edge case n=0 returning zero cost and empty plan."
+  },
+  {
+    "name": "student-merge-one-block",
+    "input": {
+      "task": "merge",
+      "sizes": [
+        42
+      ]
+    },
+    "output": {
+      "cost": 0,
+      "plan": []
+    },
+    "defect": "Validates edge case n=1 returning zero cost and empty plan."
+  },
+  {
+    "name": "student-merge-zeros",
+    "input": {
+      "task": "merge",
+      "sizes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "output": {
+      "cost": 0,
+      "plan": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ]
+    },
+    "defect": "Checks that zero-sized blocks are properly merged in valid intervals without zero-division or skipping."
+  },
+  {
+    "name": "student-merge-adjacent-vs-arbitrary",
+    "input": {
+      "task": "merge",
+      "sizes": [
+        10,
+        1,
+        10
+      ]
+    },
+    "output": {
+      "cost": 32,
+      "plan": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    "defect": "Ensures DP merges strictly adjacent blocks and does not use greedy Huffman merge of non-adjacent elements."
+  },
+  {
+    "name": "student-merge-large-64bit",
+    "input": {
+      "task": "merge",
+      "sizes": [
+        1000000000,
+        1000000000,
+        1000000000,
+        1000000000
+      ]
+    },
+    "output": {
+      "cost": 8000000000,
+      "plan": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          2,
+          2,
+          3
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ]
+    },
+    "defect": "Validates 64-bit integer arithmetic to prevent 32-bit signed overflow on large block sums."
+  },
+  {
+    "name": "student-tree-zero-vertices",
+    "input": {
+      "task": "tree",
+      "n": 0,
+      "weights": [],
+      "edges": []
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "defect": "Tests base case of n=0 vertices producing weight 0 and empty selected list."
+  },
+  {
+    "name": "student-tree-one-positive",
+    "input": {
+      "task": "tree",
+      "n": 1,
+      "weights": [
+        7
+      ],
+      "edges": []
+    },
+    "output": {
+      "weight": 7,
+      "selected": [
+        0
+      ]
+    },
+    "defect": "Tests single positive vertex being selected."
+  },
+  {
+    "name": "student-tree-one-negative",
+    "input": {
+      "task": "tree",
+      "n": 1,
+      "weights": [
+        -7
+      ],
+      "edges": []
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "defect": "Ensures empty set (weight 0) is preferred over selecting a single negative vertex."
+  },
+  {
+    "name": "student-tree-all-negative",
+    "input": {
+      "task": "tree",
+      "n": 4,
+      "weights": [
+        -5,
+        -3,
+        -2,
+        -9
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "defect": "Ensures that when all vertices have negative weights, empty set of weight 0 is returned."
+  },
+  {
+    "name": "student-tree-star-negative-root",
+    "input": {
+      "task": "tree",
+      "n": 5,
+      "weights": [
+        -10,
+        5,
+        5,
+        5,
+        5
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "output": {
+      "weight": 20,
+      "selected": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "defect": "Checks that skipping a negative hub allows taking all its positive leaves, avoiding greedy root selection."
+  },
+  {
+    "name": "student-tree-chain-alternating",
+    "input": {
+      "task": "tree",
+      "n": 5,
+      "weights": [
+        100,
+        1,
+        100,
+        1,
+        100
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "output": {
+      "weight": 300,
+      "selected": [
+        0,
+        2,
+        4
+      ]
+    },
+    "defect": "Checks tree DP on alternating chain, verifying that no adjacent vertices are selected and sum is maximized."
+  },
+  {
+    "name": "student-search-empty-pattern-boundaries",
+    "input": {
+      "task": "naive",
+      "text": "abc",
+      "pattern": ""
+    },
+    "output": {
+      "positions": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "defect": "Verifies the contract requirement that an empty pattern matches all n+1 text boundaries."
+  },
+  {
+    "name": "student-search-empty-text",
+    "input": {
+      "task": "kmp",
+      "text": "",
+      "pattern": "a"
+    },
+    "output": {
+      "positions": []
+    },
+    "defect": "Checks that searching non-empty pattern in empty text safely returns empty list."
+  },
+  {
+    "name": "student-search-both-empty",
+    "input": {
+      "task": "rk",
+      "text": "",
+      "pattern": ""
+    },
+    "output": {
+      "positions": [
+        0
+      ]
+    },
+    "defect": "Verifies that empty pattern in empty text returns position [0]."
+  },
+  {
+    "name": "student-search-pattern-longer",
+    "input": {
+      "task": "naive",
+      "text": "ab",
+      "pattern": "abcd"
+    },
+    "output": {
+      "positions": []
+    },
+    "defect": "Ensures searching pattern longer than text returns [] without substring bounds errors."
+  },
+  {
+    "name": "student-search-case-punctuation",
+    "input": {
+      "task": "kmp",
+      "text": "Hello, World! hello, world!",
+      "pattern": "Hello"
+    },
+    "output": {
+      "positions": [
+        0
+      ]
+    },
+    "defect": "Checks case sensitivity and punctuation handling in exact string matching."
+  },
+  {
+    "name": "student-search-overlaps",
+    "input": {
+      "task": "kmp",
+      "text": "banana",
+      "pattern": "ana"
+    },
+    "output": {
+      "positions": [
+        1,
+        3
+      ]
+    },
+    "defect": "Verifies overlapping match retention via prefix fallback rather than jumping by pattern length."
+  },
+  {
+    "name": "student-rk-ab-dj-collision",
+    "input": {
+      "task": "rk",
+      "text": "abdj",
+      "pattern": "ab"
+    },
+    "output": {
+      "positions": [
+        0
+      ]
+    },
+    "defect": "Tests character verification on equal-hash collision between ab and dj (both hash 75 mod 101)."
+  },
+  {
+    "name": "student-rk-bc-ek-collision",
+    "input": {
+      "task": "rk",
+      "text": "bcek",
+      "pattern": "bc"
+    },
+    "output": {
+      "positions": [
+        0
+      ]
+    },
+    "defect": "Tests collision rejection between bc and ek (both hash 6 mod 101)."
+  },
+  {
+    "name": "student-suffix-empty",
+    "input": {
+      "task": "suffix",
+      "text": ""
+    },
+    "output": {
+      "sa": [],
+      "lcp": [],
+      "repeated": ""
+    },
+    "defect": "Validates empty text handling with empty sa, empty lcp, and empty repeated string."
+  },
+  {
+    "name": "student-suffix-single-char",
+    "input": {
+      "task": "suffix",
+      "text": "z"
+    },
+    "output": {
+      "sa": [
+        0
+      ],
+      "lcp": [
+        0
+      ],
+      "repeated": ""
+    },
+    "defect": "Checks single character text sa=[0], lcp=[0] with repeated=\"\"."
+  },
+  {
+    "name": "student-suffix-all-equal",
+    "input": {
+      "task": "suffix",
+      "text": "aaaa"
+    },
+    "output": {
+      "sa": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "lcp": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "repeated": "aaa"
+    },
+    "defect": "Tests prefix doubling and Kasai on homogeneous string with maximum overlapping repeats."
+  },
+  {
+    "name": "student-suffix-all-distinct",
+    "input": {
+      "task": "suffix",
+      "text": "abcdef"
+    },
+    "output": {
+      "sa": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "lcp": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "repeated": ""
+    },
+    "defect": "Checks text with no repeating substrings, ensuring all LCP values are 0 and repeated is empty."
+  },
+  {
+    "name": "student-suffix-abracadabra",
+    "input": {
+      "task": "suffix",
+      "text": "abracadabra"
+    },
+    "output": {
+      "sa": [
+        10,
+        7,
+        0,
+        3,
+        5,
+        8,
+        1,
+        4,
+        6,
+        9,
+        2
+      ],
+      "lcp": [
+        0,
+        1,
+        4,
+        1,
+        1,
+        0,
+        3,
+        0,
+        0,
+        0,
+        2
+      ],
+      "repeated": "abra"
+    },
+    "defect": "Verifies suffix sorting and Kasai LCP on classic abracadabra with repeat abra of length 4."
+  },
+  {
+    "name": "student-aho-empty-dictionary",
+    "input": {
+      "task": "aho",
+      "patterns": [],
+      "texts": [
+        "hello",
+        "world"
+      ]
+    },
+    "output": {
+      "counts": [
+        [],
+        []
+      ]
+    },
+    "defect": "Checks that empty patterns dictionary produces empty count row per input text."
+  },
+  {
+    "name": "student-aho-no-texts",
+    "input": {
+      "task": "aho",
+      "patterns": [
+        "cat",
+        "dog"
+      ],
+      "texts": []
+    },
+    "output": {
+      "counts": []
+    },
+    "defect": "Checks that empty texts list produces empty counts list."
+  },
+  {
+    "name": "student-aho-empty-text",
+    "input": {
+      "task": "aho",
+      "patterns": [
+        "cat",
+        "dog"
+      ],
+      "texts": [
+        ""
+      ]
+    },
+    "output": {
+      "counts": [
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "defect": "Checks that empty text string produces row of zeros for all patterns."
+  },
+  {
+    "name": "student-aho-overlap-prefix-suffix",
+    "input": {
+      "task": "aho",
+      "patterns": [
+        "a",
+        "aa",
+        "aaa"
+      ],
+      "texts": [
+        "aaaa"
+      ]
+    },
+    "output": {
+      "counts": [
+        [
+          4,
+          3,
+          2
+        ]
+      ]
+    },
+    "defect": "Validates reverse-BFS failure link count propagation on multi-scale overlapping patterns."
+  },
+  {
+    "name": "student-aho-independent-texts-reset",
+    "input": {
+      "task": "aho",
+      "patterns": [
+        "in"
+      ],
+      "texts": [
+        "inside",
+        "outside",
+        "inside"
+      ]
+    },
+    "output": {
+      "counts": [
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    "defect": "Ensures state and match counts reset completely between consecutive independent text evaluations."
+  }
+]
